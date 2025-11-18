@@ -12,9 +12,9 @@ class transportationCard {
     }
     
     static void setTransportCard(){
-        transportationCard waterWays = new transportationCard(3000, 300, 1500);
-        transportationCard airWays = new transportationCard(11000, 1500, 5500);
-        transportationCard railWays = new transportationCard(9500, 1200, 5500);
-        transportationCard roadWays = new transportationCard(3500, 800, 5500);
+        transportationCards.put("waterways", new transportationCard(3000, 300, 1500));
+        transportationCards.put("airways", new transportationCard(11000, 1500, 5500));
+        transportationCards.put("railways", new transportationCard(9500, 1200, 5500));
+        transportationCards.put("roadways", new transportationCard(3500, 800, 5500));
     }
 }
