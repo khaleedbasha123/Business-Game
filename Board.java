@@ -6,17 +6,47 @@ class Board{
         switch(type){
             case "prop":
                 propertyCard x = propertyCard.propertyCards.get(card);
-                System.out.println(card + ": " + x.color);
+                printProperty(x, card);
                 break;
             case "transport":
                 transportationCard y = transportationCard.transportationCards.get(card);
-                System.out.println(card + ": " + y.cost);
+                printTransport(y, card);
                 break;
             default:
-                System.out.println(card + ": " + "Not Found");
+            //    System.out.println(card + ": " + "Not Found");
                 break;
         }
     }
+    
+    static void printProperty(propertyCard x, String card){
+        String a = "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        System.out.println(a);
+        System.out.println("+++++++++++ card: " + card.toUpperCase() + " +++++++++++" );
+        System.out.println(card + " color: " + x.color);
+        System.out.println(card + " cost: " + x.cost);
+        System.out.println(card + " rentSite: " + x.rentSite);
+        System.out.println(card + " oneHouse: " + x.oneHouse);
+        System.out.println(card + " twoHouses: " + x.twoHouses);
+        System.out.println(card + " threeHouses: " + x.threeHouses);
+        System.out.println(card + " hotel: " + x.hotel);
+        System.out.println(card + " costOfHouse: " + x.costOfHouse);
+        System.out.println(card + " costOfHotel: " + x.costOfHotel);
+        System.out.println(card + " bankMortageValue: " + x.bankMortageValue);
+        System.out.println(a);
+        System.out.println();
+    }
+    
+    static void printTransport(transportationCard x, String card){
+        String a = "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        System.out.println(a);
+        System.out.println("++++++++++++ card: "  + card.toUpperCase() + "++++++++++++");
+        System.out.println(card + " cost: " + x.cost);
+        System.out.println(card + " rent: " + x.rent);
+        System.out.println(card + " bankMortageValue: " + x.bankMortageValue);
+        System.out.println(a);
+        System.out.println();
+    }
+    
     static String cardType(String card){
         if(propertyCard.propertyCards.containsKey(card)){
             return "prop";
