@@ -1,7 +1,6 @@
 	// Online Java Compiler
 // Use this editor to write, compile and run your Java code online
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 class player {
@@ -46,7 +45,7 @@ class player {
             Bank.cards.remove(card);
             has.add(card);
             this.bankBalance-=cost;
-	    addCard(card);
+	        addCard(card);
         }
 	
     }
@@ -67,7 +66,7 @@ class player {
 
         this.bankBalance+=cost;
         has.remove(card);
-	deleteCard(card);
+	    deleteCard(card);
     }
 
     void deleteCard(String card){
@@ -124,7 +123,7 @@ class player {
     public static void main(String[] args){
         player p = new player("Khaleed", 15000);
 	
-	p.buyCard("delhi");
+	    p.buyCard("delhi");
         System.out.println("redCards: " + p.redCards);
         System.out.println("yellowCards: " + p.yellowCards);
         System.out.println("blueCards: " + p.blueCards);
@@ -132,10 +131,10 @@ class player {
 
         p.buyCard("shimla");
 
-	System.out.println(Bank.cards);
+	    System.out.println(Bank.cards);
         System.out.println(p.has);
 
-	p.sellCard("delhi");
+	    p.sellCard("delhi");
 
         System.out.println();
         System.out.println("redCards: " + p.redCards);

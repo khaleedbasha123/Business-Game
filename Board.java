@@ -1,4 +1,3 @@
-import java.util.HashMap;
 
 class Board{
     static void showCardDetails(String card){
@@ -59,8 +58,11 @@ class Board{
         }
     }
     public static void main(String[] args){
-        String square[] = {"start", "cochin", "internet", "railways", "chandigarh", "income tax", "indore", "chance", "jaipur", "jail", "delhi", "ahmedabad", "electricity", "roadways", "amritsar", "goa", "community chest", "hyderabad", "club", "agra", "chance", "kanpur", "patna", "darjeeling", "ladakh", "shimla", "rest house", "chennai", "community chest", "bangalore", "wealth tax", "pune", "kolkata", "waterways", "mumbai"
-			  };
+        String square[] = {"start", "cochin", "internet", "railways", "chandigarh", "income tax", "indore", "chance", "jaipur", 
+                           "jail", "delhi", "ahmedabad", "electricity", "roadways", "amritsar", "goa", "community chest", "hyderabad", 
+                           "club", "agra", "chance", "kanpur", "patna", "darjeeling", "ladakh", "shimla", "rest house", "chennai", 
+                           "community chest", "bangalore", "wealth tax", "pune", "kolkata", "waterways", "mumbai"
+			            };
 			  
 		propertyCard.setPropertyCards();
 		transportationCard.setTransportCard();
