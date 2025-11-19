@@ -1,12 +1,13 @@
 import java.util.*;
 
 class Game{
-
+    static ArrayList<String> names = new ArrayList<>();
+    static Scanner sc = new Scanner(System.in);
     static HashMap<String, player> players = new HashMap<>();
     static ArrayList<Integer> playersCurrentIndex = new ArrayList<>();
     static int nPlayers;
 
-    static ArrayList<Boolean> playing = new ArrayList<>();
+    static ArrayList<String> eliminated = new ArrayList<>();
 
     static int first = 0;
 
@@ -21,7 +22,6 @@ class Game{
             int dice2 = r.nextInt(6) + 1;
             if((playersCurrentIndex.get(i%nPlayers)+dice1+dice2) >= 36){
                 first = i%nPlayers;
-
                 for(int j = 0; j<nPlayers; j++){
                     playersCurrentIndex.set(j%nPlayers, 0);
                 }
@@ -42,8 +42,34 @@ class Game{
         return i;
     }
 
-    public static void main(String[] args) {
+    static void buyOrSell(player x, String c){
+        if(Bank.cards.contains(c)){
+            System.out.println("Buy Card? Type 'Yes' or 'No'");
+            String s = sc.nextLine();
 
+            if(s.equalsIgnoreCase("yes")){
+                x.buyCard(c);
+                Bank.cards.remove(c);
+                System.out.println("Card Bought Successfully!!");
+            }
+        }
+        else{
+            player y = whoHasCard(c); 
+            System.out.println("Card is already bought by " + y.name);
+        }
+    }
+
+    static player whoHasCard(String c){
+        for(int i = 0; i<nPlayers; i++){
+            player x = players.get(names.get(i));
+            if(x.has.contains(c)){
+                return x;
+            }
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
         propertyCard.setPropertyCards();
 		transportationCard.setTransportCard();
         
@@ -56,28 +82,37 @@ class Game{
         for(int i = 1; i<=n; i++){
             System.out.println("Enter your name: ");
             String playerName = sc.next();
+            names.add(playerName);
             players.put(playerName, new player(playerName, 10000));
-            playing.add(true);
             playersCurrentIndex.add(0);
         }
 
         firstChance();
 
-        for(int i = first; i<nPlayers ;i++){
+        for(int i = first; i<12 ;i++){
+            System.out.println("Throw the dice");
             int Dice = dice(i%nPlayers);
-            
+            String k = sc.nextLine();
+            player x = players.get(names.get(i%nPlayers));
+            System.out.println("Hey! " + names.get(i%nPlayers) +" You got: " + Dice + " Now You're on " + Board.square[Dice]);
             Board.showCardDetails(Board.square[Dice]);
-            // buy();
-            // sell();
+            
+            buyOrSell(x, Board.square[Dice]);
+
+            // x.buyCard(Board.square[Dice]);
+            // players.get(names.get(i%nPlayers)).sellCard(Board.square[Dice]);
             // rent();
             // outOfMoney();
             // eliminate();
-
         }
 
         System.out.println(players);
         System.out.println(playersCurrentIndex);
         System.out.println(first);
-        System.out.println(playing);
+        System.out.println(Bank.cards);
+        for(int i = 0; i<nPlayers; i++){
+            player x = players.get(names.get(i%nPlayers));
+            System.out.println(players.get(names.get(i)).has);
+        }
     }
 }
