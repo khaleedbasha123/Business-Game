@@ -11,7 +11,7 @@ class transportationCard {
         this.bankMortageValue = bankMortageValue;
     }
     
-    static void setTransportCard(){
+    static void setTransportCards(){
         transportationCards.put("waterways", new transportationCard(3000, 300, 1500));
         transportationCards.put("airways", new transportationCard(11000, 1500, 5500));
         transportationCards.put("railways", new transportationCard(9500, 1200, 5500));

@@ -71,7 +71,9 @@ class Game{
 
     public static void main(String[] args) {
         propertyCard.setPropertyCards();
-		transportationCard.setTransportCard();
+		transportationCard.setTransportCards();
+        taxCard.setTaxCards();
+        utilityCard.setUtilityCards();
         
         Scanner sc = new Scanner(System.in);
 

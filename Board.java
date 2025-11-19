@@ -17,6 +17,9 @@ class Board{
                 transportationCard y = transportationCard.transportationCards.get(card);
                 printTransport(y, card);
                 break;
+            case "tax":
+                taxCard z = taxCard.taxCards.get(card);
+                printTax(z, card);
             default:
             //    System.out.println(card + ": " + "Not Found");
                 break;
@@ -51,6 +54,12 @@ class Board{
         System.out.println(a);
         System.out.println();
     }
+
+    static void printTax(taxCard x, String card){
+        String a = "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        System.out.println("++++++++++++ card: "  + card.toUpperCase() + "++++++++++++");
+        System.out.println("you have to pay " + x.pay + " rupees");
+    }
     
     static String cardType(String card){
         if(propertyCard.propertyCards.containsKey(card)){
@@ -58,6 +67,12 @@ class Board{
         }
         else if(transportationCard.transportationCards.containsKey(card)){
             return "transport";
+        }
+        else if(taxCard.taxCards.containsKey(card)){
+            return "tax";
+        }
+        else if(utilityCard.utilityCards.containsKey(card)){
+            return "util";
         }
         else{
             return "special";
