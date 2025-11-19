@@ -1,11 +1,8 @@
-// first chance
-// dice
-// buy property or not
 import java.util.*;
 
 class Game{
 
-    static ArrayList<String> players = new ArrayList<>();
+    static HashMap<String, player> players = new HashMap<>();
     static ArrayList<Integer> playersCurrentIndex = new ArrayList<>();
     static int nPlayers;
 
@@ -58,24 +55,25 @@ class Game{
 
         for(int i = 1; i<=n; i++){
             System.out.println("Enter your name: ");
-            players.add(sc.next());
+            String playerName = sc.next();
+            players.put(playerName, new player(playerName, 10000));
             playing.add(true);
             playersCurrentIndex.add(0);
         }
 
-        // firstChance();
+        firstChance();
 
-        // for(int i = start; ;i++){
-            // dice(0);
+        for(int i = first; i<nPlayers ;i++){
+            int Dice = dice(i%nPlayers);
             
-            Board.showCardDetails("delhi");
+            Board.showCardDetails(Board.square[Dice]);
             // buy();
             // sell();
             // rent();
             // outOfMoney();
             // eliminate();
 
-        // }
+        }
 
         System.out.println(players);
         System.out.println(playersCurrentIndex);
