@@ -9,6 +9,8 @@ class Game{
     static ArrayList<Integer> playersCurrentIndex = new ArrayList<>();
     static int nPlayers;
 
+    static ArrayList<Boolean> playing = new ArrayList<>();
+
     static int first = 0;
 
     Game(int a){
@@ -44,6 +46,10 @@ class Game{
     }
 
     public static void main(String[] args) {
+
+        propertyCard.setPropertyCards();
+		transportationCard.setTransportCard();
+        
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Number of players? ");
@@ -53,13 +59,27 @@ class Game{
         for(int i = 1; i<=n; i++){
             System.out.println("Enter your name: ");
             players.add(sc.next());
+            playing.add(true);
             playersCurrentIndex.add(0);
         }
 
-        firstChance();
+        // firstChance();
+
+        // for(int i = start; ;i++){
+            // dice(0);
+            
+            Board.showCardDetails("delhi");
+            // buy();
+            // sell();
+            // rent();
+            // outOfMoney();
+            // eliminate();
+
+        // }
 
         System.out.println(players);
         System.out.println(playersCurrentIndex);
         System.out.println(first);
+        System.out.println(playing);
     }
 }
