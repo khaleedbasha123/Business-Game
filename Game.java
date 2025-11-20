@@ -43,6 +43,10 @@ class Game{
     }
 
     static void buyOrSell(player x, String c){
+        if(taxCard.taxCards.containsKey(c)){
+            x.buyCard(c);
+            return;
+        }
         if(Bank.cards.contains(c)){
             System.out.println("Buy Card? Type 'Yes' or 'No'");
             String s = sc.nextLine();
@@ -57,6 +61,7 @@ class Game{
             player y = whoHasCard(c); 
             System.out.println("Card is already bought by " + y.name);
         }
+        System.out.println("your current balance: " + x.bankBalance + " rupees");
     }
 
     static player whoHasCard(String c){

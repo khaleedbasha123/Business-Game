@@ -1,5 +1,3 @@
-	// Online Java Compiler
-// Use this editor to write, compile and run your Java code online
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,7 +13,6 @@ class player {
     ArrayList<String> blueCards = new ArrayList<>();
     ArrayList<String> greenCards = new ArrayList<>();
 
-
     player(String name, int balance){
         this.name = name;
         this.bankBalance = balance;
@@ -30,15 +27,23 @@ class player {
     }
 
     void buyCard(String card){
-	String type = Board.cardType(card);
-	int cost = 0;
+	    String type = Board.cardType(card);
+	    int cost = 0;
 
-	if(type.equals("prop")){
-		cost = propertyCard.propertyCards.get(card).cost;
-	}
-	else if(type.equals("transport")){
-		cost = transportationCard.transportationCards.get(card).cost;
-	}
+	    if(type.equals("prop")){
+		    cost = propertyCard.propertyCards.get(card).cost;
+	    }
+	    else if(type.equals("transport")){
+		    cost = transportationCard.transportationCards.get(card).cost;
+	    }
+        else if(type.equals("util")){
+            cost = utilityCard.utilityCards.get(card).cost;
+        }
+        else if(type.equals("tax")){
+            this.bankBalance-= taxCard.taxCards.get(card).pay;
+            System.out.println("Paid " + taxCard.taxCards.get(card).pay + " rupees to bank");
+            return;
+        }
 
         if(this.bankBalance>=cost){
 
@@ -47,22 +52,21 @@ class player {
             this.bankBalance-=cost;
 	        addCard(card);
         }
-	
     }
 
     void sellCard(String card){
-
-	String type = Board.cardType(card);
-
+	    String type = Board.cardType(card);
         int cost = 0;
 
         if(type.equals("prop")){
-                cost = propertyCard.propertyCards.get(card).cost;
+            cost = propertyCard.propertyCards.get(card).cost;
         }
         else if(type.equals("transport")){
-                cost = transportationCard.transportationCards.get(card).cost;
+            cost = transportationCard.transportationCards.get(card).cost;
         }
-
+        else if(type.equals("util")){
+            cost = utilityCard.utilityCards.get(card).cost;
+        }
 
         this.bankBalance+=cost;
         has.remove(card);
@@ -89,6 +93,7 @@ class player {
 
     void addCard(String card){
         String colorCard = divideCards(card);
+
         switch(colorCard){
             case "redCards":
                 redCards.add(card);
@@ -99,7 +104,7 @@ class player {
             case "blueCards":
                 blueCards.add(card);
                 break;
-            default:
+            case "greenCards":
                 greenCards.add(card);
                 break;
         }
@@ -115,34 +120,37 @@ class player {
         else if(card.equals("patna") || card.equals("kanpur") || card.equals("agra") || card.equals("jaipur") || card.equals("indore")){
             return "blueCards";
         }
-        else{
+        else if(card.equals("mumbai") || card.equals("kolkata") || card.equals("pune") || card.equals("ahmedabad") || card.equals("delhi")){
             return "greenCards";
         }
+        else{
+            return "";
+        }   
     }
 
-    public static void main(String[] args){
-        player p = new player("Khaleed", 15000);
+    // public static void main(String[] args){
+    //     player p = new player("Khaleed", 15000);
 	
-	    p.buyCard("delhi");
-        System.out.println("redCards: " + p.redCards);
-        System.out.println("yellowCards: " + p.yellowCards);
-        System.out.println("blueCards: " + p.blueCards);
-        System.out.println("greenCards: " + p.greenCards);
+	//     p.buyCard("delhi");
+    //     System.out.println("redCards: " + p.redCards);
+    //     System.out.println("yellowCards: " + p.yellowCards);
+    //     System.out.println("blueCards: " + p.blueCards);
+    //     System.out.println("greenCards: " + p.greenCards);
 
-        p.buyCard("shimla");
+    //     p.buyCard("shimla");
 
-	    System.out.println(Bank.cards);
-        System.out.println(p.has);
+	//     System.out.println(Bank.cards);
+    //     System.out.println(p.has);
 
-	    p.sellCard("delhi");
+	//     p.sellCard("delhi");
 
-        System.out.println();
-        System.out.println("redCards: " + p.redCards);
-        System.out.println("yellowCards: " + p.yellowCards);
-        System.out.println("blueCards: " + p.blueCards);
-        System.out.println("greenCards: " + p.greenCards);
+    //     System.out.println();
+    //     System.out.println("redCards: " + p.redCards);
+    //     System.out.println("yellowCards: " + p.yellowCards);
+    //     System.out.println("blueCards: " + p.blueCards);
+    //     System.out.println("greenCards: " + p.greenCards);
 
-        System.out.println(Bank.cards);
-        System.out.println(p.has);
-    }
+    //     System.out.println(Bank.cards);
+    //     System.out.println(p.has);
+    // }
 }
