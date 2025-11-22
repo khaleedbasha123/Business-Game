@@ -31,36 +31,44 @@ class chance {
 
                     String option = new Scanner(System.in).next();
                     if(option.equals("1")){
+
                         System.out.println("you have: " + x.has + "select a card to sell");
                         System.out.println("Type the card name: ");
                         String select = sc.nextLine();
+
                         if(x.has.contains(select)){
-                            String type = Board.cardType(select);
-                            switch(type){
-                                case "prop":
-                                    propertyCard y = propertyCard.propertyCards.get(select);
-                                    x.bankBalance += y.cost - 2000;
-                                    System.out.println("sold the card of " + y.cost + " rupees successfully");
-                                    System.out.println("current Balance: " + x.bankBalance);
-                                    break;
-                                case "transport":
-                                    transportationCard z = transportationCard.transportationCards.get(select);
-                                    x.bankBalance += z.cost - 2000;
-                                    System.out.println("sold the card of " + z.cost + " rupees successfully");
-                                    System.out.println("current Balance: " + x.bankBalance);
-                                    break;
-                                default:
-                                    utilityCard k = utilityCard.utilityCards.get(select);
-                                    x.bankBalance += k.cost - 2000;
-                                    System.out.println("sold the card of " + k.cost + " rupees successfully");
-                                    System.out.println("current Balance: " + x.bankBalance);
-                                    break;
-                            }
+
+                            x.sellCard(select);
+                            x.bankBalance -= 2000;
+                            System.out.println("current Balance: " + x.bankBalance);
+
+                            // String type = Board.cardType(select);
+                            // switch(type){
+                            //     case "prop":
+                            //         propertyCard y = propertyCard.propertyCards.get(select);
+                            //         x.bankBalance += y.cost - 2000;
+                            //         System.out.println("sold the card of " + y.cost + " rupees successfully");
+                            //         System.out.println("current Balance: " + x.bankBalance);
+                            //         break;
+                            //     case "transport":
+                            //         transportationCard z = transportationCard.transportationCards.get(select);
+                            //         x.bankBalance += z.cost - 2000;
+                            //         System.out.println("sold the card of " + z.cost + " rupees successfully");
+                            //         System.out.println("current Balance: " + x.bankBalance);
+                            //         break;
+                            //     default:
+                            //         utilityCard k = utilityCard.utilityCards.get(select);
+                            //         x.bankBalance += k.cost - 2000;
+                            //         System.out.println("sold the card of " + k.cost + " rupees successfully");
+                            //         System.out.println("current Balance: " + x.bankBalance);
+                            //         break;
+                            // }
+
                         }
                         else{
                             System.out.println("you do not have cards, you will be eliminated");
                             String name = x.name;
-                            x.eliminate();
+                            Game.eliminate(x);
                             System.out.println(name + " have been eliminated successfully");
                         }
                     }

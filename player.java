@@ -5,7 +5,7 @@ class player {
 
     String name;
     int bankBalance;
-    int index = 0;
+    int index;
     ArrayList<String> has = new ArrayList<>();
 
     ArrayList<String> redCards = new ArrayList<>();
@@ -13,9 +13,10 @@ class player {
     ArrayList<String> blueCards = new ArrayList<>();
     ArrayList<String> greenCards = new ArrayList<>();
 
-    player(String name, int balance){
+    player(String name, int balance, int index){
         this.name = name;
         this.bankBalance = balance;
+        this.index = index;
     }
 
     int dice(){
@@ -69,8 +70,8 @@ class player {
         }
 
         this.bankBalance+=cost;
-        has.remove(card);
-	    deleteCard(card);
+        this.has.remove(card);
+	    this.deleteCard(card);
     }
 
     void deleteCard(String card){

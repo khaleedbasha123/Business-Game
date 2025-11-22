@@ -77,6 +77,13 @@ class Game{
         return null;
     }
 
+    static void eliminate(player x){
+        names.remove(x.name);
+        players.remove(x.name);
+        playersCurrentIndex.remove(x.index);
+        nPlayers--;
+    }
+
     public static void main(String[] args) {
         propertyCard.setPropertyCards();
 		transportationCard.setTransportCards();
@@ -93,7 +100,7 @@ class Game{
             System.out.println("Enter your name: ");
             String playerName = sc.next();
             names.add(playerName);
-            players.put(playerName, new player(playerName, 10000));
+            players.put(playerName, new player(playerName, 10000, i-1));
             playersCurrentIndex.add(0);
         }
 
