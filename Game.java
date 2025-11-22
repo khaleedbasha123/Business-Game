@@ -4,10 +4,10 @@ class Game{
     static ArrayList<String> names = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
     static HashMap<String, player> players = new HashMap<>();
-    static ArrayList<Integer> playersCurrentIndex = new ArrayList<>();
+
     static int nPlayers;
 
-    static ArrayList<String> eliminated = new ArrayList<>();
+    static ArrayList<player> eliminated = new ArrayList<>();
 
     static int first = 0;
 
@@ -17,28 +17,28 @@ class Game{
 
     static void firstChance(){
         for(int i = 0; ;i++){
+            player x = players.get(names.get(i%nPlayers));
             Random r = new Random();
             int dice1 = r.nextInt(6) + 1;
             int dice2 = r.nextInt(6) + 1;
-            if((playersCurrentIndex.get(i%nPlayers)+dice1+dice2) >= 36){
+            x.index += dice1 + dice2;
+            if(x.index >= 36){
                 first = i%nPlayers;
                 for(int j = 0; j<nPlayers; j++){
-                    playersCurrentIndex.set(j%nPlayers, 0);
+                    x.index = 0;
                 }
                 break;
-            }
-            else{
-                playersCurrentIndex.set(i%nPlayers, playersCurrentIndex.get(i%nPlayers) + dice1 + dice2);
             }
         }
     }
 
-    static int dice(int index){
+    static int dice(player x){
         Random r = new Random();
         int dice1 = r.nextInt(6) + 1;
         int dice2 = r.nextInt(6) + 1;
-        int i = (playersCurrentIndex.get(index) + dice1 + dice2)%36;
-        playersCurrentIndex.set(index, i);
+
+        int i = (x.index + dice1 + dice2)%36;
+        x.index = i;
         return i;
     }
 
@@ -80,8 +80,8 @@ class Game{
     static void eliminate(player x){
         names.remove(x.name);
         players.remove(x.name);
-        playersCurrentIndex.remove(x.index);
-        nPlayers--;
+        eliminated.add(x);
+        nPlayers = players.size();
     }
 
     public static void main(String[] args) {
@@ -100,17 +100,17 @@ class Game{
             System.out.println("Enter your name: ");
             String playerName = sc.next();
             names.add(playerName);
-            players.put(playerName, new player(playerName, 10000, i-1));
-            playersCurrentIndex.add(0);
+            players.put(playerName, new player(playerName, 10000, 0));
         }
 
         firstChance();
 
         for(int i = first; i<12 ;i++){
-            System.out.println("Throw the dice");
-            int Dice = dice(i%nPlayers);
-            String k = sc.nextLine();
             player x = players.get(names.get(i%nPlayers));
+            System.out.println("Throw the dice");
+            int Dice = dice(x);
+            String k = sc.nextLine();
+            
             System.out.println("Hey! " + names.get(i%nPlayers) +" You got: " + Dice + " Now You're on " + Board.square[Dice]);
             Board.showCardDetails(Board.square[Dice]);
             
@@ -124,13 +124,13 @@ class Game{
         }
 
         System.out.println(players);
-        System.out.println(playersCurrentIndex);
         System.out.println(first);
         System.out.println(Bank.cards);
         for(int i = 0; i<nPlayers; i++){
             player x = players.get(names.get(i%nPlayers));
             System.out.println(players.get(names.get(i)).has);
             System.out.println(players.get(names.get(i)).bankBalance);
+            System.out.println(players.get(names.get(i)).index);
         }
     }
 }
