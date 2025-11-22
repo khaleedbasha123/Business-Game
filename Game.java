@@ -56,6 +56,9 @@ class Game{
                 Bank.cards.remove(c);
                 System.out.println("Card Bought Successfully!!");
             }
+            else{
+                System.out.println("well, you chose not to buy!!");
+            }
         }
         else{
             player y = whoHasCard(c); 
@@ -120,6 +123,7 @@ class Game{
         for(int i = 0; i<nPlayers; i++){
             player x = players.get(names.get(i%nPlayers));
             System.out.println(players.get(names.get(i)).has);
+            System.out.println(players.get(names.get(i)).bankBalance);
         }
     }
 }
