@@ -1,7 +1,7 @@
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 class player {
+    static Scanner sc = new Scanner(System.in);
 
     String name;
     int bankBalance;
@@ -49,29 +49,54 @@ class player {
         if(this.bankBalance>=cost){
 
             Bank.cards.remove(card);
-            has.add(card);
+            this.has.add(card);
             this.bankBalance-=cost;
-	        addCard(card);
+	        this.addCard(card);
         }
+        this.balance();
     }
 
-    void sellCard(String card){
-	    String type = Board.cardType(card);
-        int cost = 0;
+    void sellCard(int target){
 
-        if(type.equals("prop")){
-            cost = propertyCard.propertyCards.get(card).cost;
-        }
-        else if(type.equals("transport")){
-            cost = transportationCard.transportationCards.get(card).cost;
-        }
-        else if(type.equals("util")){
-            cost = utilityCard.utilityCards.get(card).cost;
+        System.out.println("You have these cards: " + this.has);
+        for(int i = 0; i<this.has.size(); i++){
+            Board.showCardDetails(this.has.get(i));
         }
 
-        this.bankBalance+=cost;
-        this.has.remove(card);
-	    this.deleteCard(card);
+        int t = 0;
+        while(t<target){
+            if(this.has.isEmpty()){
+                System.out.println("Not Enough Money!! You're eliminated");
+                Game.eliminate(this);
+                break;
+            }
+            System.out.println("Select a card to buy: ");
+            String select = sc.next();
+            if(this.has.contains(select)){
+                String type = Board.cardType(select);
+
+                int cost = 0;
+                if(type.equals("prop")){
+                    cost = propertyCard.propertyCards.get(select).bankMortageValue;
+                }
+                else if(type.equals("transport")){
+                    cost = transportationCard.transportationCards.get(select).bankMortageValue;
+                }
+                else if(type.equals("util")){
+                    cost = utilityCard.utilityCards.get(select).bankMortageValue;
+                }
+                t += cost;
+                this.has.remove(select);
+	            this.deleteCard(select);
+                System.out.println("Sold " + select + " successfully!");
+            }
+            else{
+                System.out.println("Please Enter correct card");
+            }
+        }
+
+        this.bankBalance += t;
+        this.balance();
     }
 
     void deleteCard(String card){
@@ -127,6 +152,10 @@ class player {
         else{
             return "";
         }   
+    }
+
+    void balance(){
+        System.out.println("Your Current Balance: " + this.bankBalance);
     }
 
     // public static void main(String[] args){

@@ -3,8 +3,8 @@ class Board{
 
     static final String square[] = {"start", "cochin", "internet", "railways", "chandigarh", "income tax", "indore", "chance", "jaipur", 
                                 "jail", "delhi", "ahmedabad", "electricity", "roadways", "amritsar", "goa", "community chest", "hyderabad", 
-                                "club", "agra", "chance", "kanpur", "patna", "darjeeling", "ladakh", "shimla", "rest house", "chennai", 
-                                "community chest", "bangalore", "wealth tax", "pune", "kolkata", "waterways", "mumbai"
+                                "club", "agra", "chance", "kanpur", "patna", "darjeeling", "airways", "ladakh", "shimla", "rest house", 
+                                "chennai", "community chest", "bangalore", "wealth tax", "pune", "kolkata", "waterways", "mumbai"
 			                };
     static void showCardDetails(String card){
         String type = cardType(card);

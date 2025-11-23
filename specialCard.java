@@ -1,12 +1,12 @@
 import java.util.*;
 
-class specialCard{
+// class specialCard{
 
-    ArrayList<String> specialCards = new ArrayList<>(Arrays.asList("chance", "jail", "start", "community chest", "rent house"));
+//     ArrayList<String> specialCards = new ArrayList<>(Arrays.asList("chance", "jail", "start", "community chest", "rent house"));
 
-}
+// }
 
-class chance {
+class specialCard {
 
     static Random r = new Random();
     static Scanner sc = new Scanner(System.in);
@@ -20,7 +20,7 @@ class chance {
                 System.out.println("Now you are at: " + Game.players.get(Game.names.get(0)).index);
 
             case 1:
-                System.out.println("You have to pay penalty 2000");
+                System.out.println("You have to pay penalty 5000");
 
                 if(x.bankBalance<2000){
                     System.out.println("Insufficient balance, now you have two options:");
@@ -32,60 +32,35 @@ class chance {
                     String option = new Scanner(System.in).next();
                     if(option.equals("1")){
 
-                        System.out.println("you have: " + x.has + "select a card to sell");
-                        System.out.println("Type the card name: ");
-                        String select = sc.nextLine();
-
-                        if(x.has.contains(select)){
-
-                            x.sellCard(select);
-                            x.bankBalance -= 2000;
-                            System.out.println("current Balance: " + x.bankBalance);
-
-                            // String type = Board.cardType(select);
-                            // switch(type){
-                            //     case "prop":
-                            //         propertyCard y = propertyCard.propertyCards.get(select);
-                            //         x.bankBalance += y.cost - 2000;
-                            //         System.out.println("sold the card of " + y.cost + " rupees successfully");
-                            //         System.out.println("current Balance: " + x.bankBalance);
-                            //         break;
-                            //     case "transport":
-                            //         transportationCard z = transportationCard.transportationCards.get(select);
-                            //         x.bankBalance += z.cost - 2000;
-                            //         System.out.println("sold the card of " + z.cost + " rupees successfully");
-                            //         System.out.println("current Balance: " + x.bankBalance);
-                            //         break;
-                            //     default:
-                            //         utilityCard k = utilityCard.utilityCards.get(select);
-                            //         x.bankBalance += k.cost - 2000;
-                            //         System.out.println("sold the card of " + k.cost + " rupees successfully");
-                            //         System.out.println("current Balance: " + x.bankBalance);
-                            //         break;
-                            // }
-
-                        }
-                        else{
-                            System.out.println("you do not have cards, you will be eliminated");
-                            String name = x.name;
-                            Game.eliminate(x);
-                            System.out.println(name + " have been eliminated successfully");
-                        }
+                        x.sellCard(5000);
                     }
                     else{
                         Game.eliminate(x);
                     }
                 }
                 else{
-
-                    x.bankBalance -= 2000;
+                    x.bankBalance -= 5000;
                     System.out.println("Penalty paid successfully");
                     System.out.println("current Balance: " + x.bankBalance);
                 }
             case 2:
                 System.out.println("Hey, congrats you are receiving money");
+                x.bankBalance += 2500;
             case 3:
                 System.out.println("Bad Luck!! You have to move to jail");
+                System.out.println("Pay 500 or quit. Click '1' to pay");
+
+                String option = sc.next();
+                if(option.equals("1")){
+                    if(x.bankBalance>=500){
+                        x.bankBalance -= 500;
+                        System.out.println("Paid Successfully");
+                    }
+                    else{
+                        System.out.println("Select a card to sell");
+                        x.sellCard(500);
+                    }
+                }
             case 4:
                 System.out.println("Bad Luck!! You have to move back few steps");
                 System.out.println(r.nextInt(12) + 1);

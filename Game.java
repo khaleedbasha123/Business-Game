@@ -43,6 +43,10 @@ class Game{
     }
 
     static void buyOrSell(player x, String c){
+        if(c.equalsIgnoreCase("chance")){
+            specialCard.chance(x);
+            return;
+        }
         if(taxCard.taxCards.containsKey(c)){
             x.buyCard(c);
             return;
