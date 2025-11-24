@@ -1,13 +1,13 @@
 import java.util.HashMap;
 
-class transportationCard {
-    int cost, bankMortageValue, rent;
+class transportationCard extends card{
+    // int cost, bankMortageValue, rentSite;
     
     static HashMap<String, transportationCard> transportationCards = new HashMap<>();
     
     transportationCard(int cost, int rent, int bankMortageValue){
         this.cost = cost;
-        this.rent = rent;
+        this.rentSite = rent;
         this.bankMortageValue = bankMortageValue;
     }
     

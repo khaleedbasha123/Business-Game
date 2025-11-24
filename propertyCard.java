@@ -1,9 +1,9 @@
 import java.util.HashMap;
 
-class propertyCard {
+class propertyCard extends card{
     String color;
-    int cost, index, rentSite, oneHouse, twoHouses, threeHouses, hotel;
-    int costOfHouse, costOfHotel, bankMortageValue;
+    int index, oneHouse, twoHouses, threeHouses, hotel;
+    int costOfHouse, costOfHotel;
     
     static HashMap<String, propertyCard> propertyCards = new HashMap<>();
     

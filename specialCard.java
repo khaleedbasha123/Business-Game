@@ -6,7 +6,7 @@ import java.util.*;
 
 // }
 
-class specialCard {
+class specialCard extends card{
 
     static Random r = new Random();
     static Scanner sc = new Scanner(System.in);

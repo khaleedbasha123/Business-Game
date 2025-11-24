@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-class taxCard{
+class taxCard extends card{
 
     static HashMap<String, taxCard> taxCards = new HashMap<>();
 

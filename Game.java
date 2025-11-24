@@ -25,7 +25,8 @@ class Game{
             if(x.index >= 36){
                 first = i%nPlayers;
                 for(int j = 0; j<nPlayers; j++){
-                    x.index = 0;
+                    player y = players.get(names.get(j%nPlayers));
+                    y.index = 0;
                 }
                 break;
             }
@@ -82,8 +83,11 @@ class Game{
             }
         }
         else{
-            player y = whoHasCard(c); 
+            player y = whoHasCard(c);
             System.out.println("Card is already bought by " + y.name);
+            System.out.println("You have to pay rent to " + y.name);
+            card type = Board.getCardType(c);
+            System.out.println("Rent of " + c + " is " + type.rentSite);
         }
         // System.out.println("your current balance: " + x.bankBalance + " rupees");
     }

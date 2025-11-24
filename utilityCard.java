@@ -1,14 +1,14 @@
 
 import java.util.HashMap;
 
-class utilityCard{
+class utilityCard extends card{
 
-    int cost, rent, bankMortageValue;
+    // int cost, rentSite, bankMortageValue;
     static HashMap<String, utilityCard> utilityCards = new HashMap<>();
 
     utilityCard(int cost, int rent, int bankMortageValue) {
         this.cost = cost;
-        this.rent = rent;
+        this.rentSite = rent;
         this.bankMortageValue = bankMortageValue;
     }
 

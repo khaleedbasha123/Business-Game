@@ -20,6 +20,10 @@ class Board{
             case "tax":
                 taxCard z = taxCard.taxCards.get(card);
                 printTax(z, card);
+            case "util":
+                utilityCard a = utilityCard.utilityCards.get(card);
+                printUtility(a, card);
+                break;
             default:
             //    System.out.println(card + ": " + "Not Found");
                 break;
@@ -49,7 +53,18 @@ class Board{
         System.out.println(a);
         System.out.println("++++++++++++ card: "  + card.toUpperCase() + "++++++++++++");
         System.out.println(card + " cost: " + x.cost);
-        System.out.println(card + " rent: " + x.rent);
+        System.out.println(card + " rent: " + x.rentSite);
+        System.out.println(card + " bankMortageValue: " + x.bankMortageValue);
+        System.out.println(a);
+        System.out.println();
+    }
+
+    static void printUtility(utilityCard x, String card){
+        String a = "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        System.out.println(a);
+        System.out.println("++++++++++++ card: "  + card.toUpperCase() + "++++++++++++");
+        System.out.println(card + " cost: " + x.cost);
+        System.out.println(card + " rent: " + x.rentSite);
         System.out.println(card + " bankMortageValue: " + x.bankMortageValue);
         System.out.println(a);
         System.out.println();
@@ -59,6 +74,18 @@ class Board{
         String a = "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
         System.out.println("++++++++++++ card: "  + card.toUpperCase() + "++++++++++++");
         System.out.println("you have to pay " + x.pay + " rupees");
+    }
+
+    static card getCardType(String card){
+        if(propertyCard.propertyCards.containsKey(card)){
+            return propertyCard.propertyCards.get(card);
+        }
+        else if(transportationCard.transportationCards.containsKey(card)){
+            return transportationCard.transportationCards.get(card);
+        }
+        else{
+            return utilityCard.utilityCards.get(card);
+        }
     }
     
     static String cardType(String card){
