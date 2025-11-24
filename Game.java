@@ -36,6 +36,7 @@ class Game{
         Random r = new Random();
         int dice1 = r.nextInt(6) + 1;
         int dice2 = r.nextInt(6) + 1;
+        if((x.index + dice1 + dice2)>=36) x.time++;
 
         int i = (x.index + dice1 + dice2)%36;
         x.index = i;
@@ -43,12 +44,28 @@ class Game{
     }
 
     static void buyOrSell(player x, String c){
+        if(c.equalsIgnoreCase("jail")){
+            specialCard.jail(x);
+            return;
+        }
         if(c.equalsIgnoreCase("chance")){
             specialCard.chance(x);
             return;
         }
+        if(c.equalsIgnoreCase("community chest")){
+            specialCard.communityChest(x);
+            return;
+        }
+        if(c.equalsIgnoreCase("rest house")){
+            specialCard.restHouse(x);
+            return;
+        }
         if(taxCard.taxCards.containsKey(c)){
             x.buyCard(c);
+            return;
+        }
+        if(c.equalsIgnoreCase("start")){
+            specialCard.start(x);
             return;
         }
         if(Bank.cards.contains(c)){
@@ -68,7 +85,7 @@ class Game{
             player y = whoHasCard(c); 
             System.out.println("Card is already bought by " + y.name);
         }
-        System.out.println("your current balance: " + x.bankBalance + " rupees");
+        // System.out.println("your current balance: " + x.bankBalance + " rupees");
     }
 
     static player whoHasCard(String c){
@@ -136,5 +153,6 @@ class Game{
             System.out.println(players.get(names.get(i)).bankBalance);
             System.out.println(players.get(names.get(i)).index);
         }
+
     }
 }

@@ -6,6 +6,7 @@ class player {
     String name;
     int bankBalance;
     int index;
+    int time = 0;
     ArrayList<String> has = new ArrayList<>();
 
     ArrayList<String> redCards = new ArrayList<>();
@@ -41,9 +42,16 @@ class player {
             cost = utilityCard.utilityCards.get(card).cost;
         }
         else if(type.equals("tax")){
-            this.bankBalance-= taxCard.taxCards.get(card).pay;
-            System.out.println("Paid " + taxCard.taxCards.get(card).pay + " rupees to bank");
-            return;
+            int payMoney = taxCard.taxCards.get(card).pay;
+            if(this.bankBalance>=payMoney){
+                this.bankBalance -= payMoney;
+                System.out.println("Paid " + taxCard.taxCards.get(card).pay + " rupees to bank");
+                return;
+            }
+            else{
+                sellCard(payMoney);
+                return;
+            }
         }
 
         if(this.bankBalance>=cost){
