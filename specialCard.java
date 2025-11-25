@@ -64,7 +64,7 @@ class specialCard extends card{
 
     static void moveBack(player x){
         System.out.println("You have to move back few steps");
-        x.index = Math.abs(x.index - r.nextInt(12) + 1)%36;
+        x.index = Math.abs(x.index - Game.dice())%36;
                 
         System.out.println("you have moved to " + x.index);
     }

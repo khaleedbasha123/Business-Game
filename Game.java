@@ -33,6 +33,12 @@ class Game{
         }
     }
 
+    static int dice(){
+        Random r = new Random();
+        int dice1 = r.nextInt(6) + 1;
+        int dice2 = r.nextInt(6) + 1;
+        return dice1 + dice2;
+    }
     static int dice(player x){
         Random r = new Random();
         int dice1 = r.nextInt(6) + 1;
@@ -70,13 +76,13 @@ class Game{
             return;
         }
         if(Bank.cards.contains(c)){
-            System.out.println("Buy Card? Type 'Yes' or 'No'");
+            System.out.println("your current Bank Balance: " + x.bankBalance);
+            System.out.println("\nBuy Card? Type 'Yes' or 'No'");
             String s = sc.nextLine();
 
             if(s.equalsIgnoreCase("yes")){
                 x.buyCard(c);
-                Bank.cards.remove(c);
-                System.out.println("Card Bought Successfully!!");
+                // System.out.println("Card Bought Successfully!!");
             }
             else{
                 System.out.println("well, you chose not to buy!!");
@@ -148,7 +154,7 @@ class Game{
             // eliminate();
         }
 
-        System.out.println(players);
+        System.out.println(names);
         System.out.println(first);
         System.out.println(Bank.cards);
         for(int i = 0; i<nPlayers; i++){

@@ -32,16 +32,16 @@ class player {
 	    String type = Board.cardType(card);
 	    int cost = 0;
 
-	    if(type.equals("prop")){
+	    if(type.equalsIgnoreCase("prop")){
 		    cost = propertyCard.propertyCards.get(card).cost;
 	    }
-	    else if(type.equals("transport")){
+	    else if(type.equalsIgnoreCase("transport")){
 		    cost = transportationCard.transportationCards.get(card).cost;
 	    }
-        else if(type.equals("util")){
+        else if(type.equalsIgnoreCase("util")){
             cost = utilityCard.utilityCards.get(card).cost;
         }
-        else if(type.equals("tax")){
+        else if(type.equalsIgnoreCase("tax")){
             int payMoney = taxCard.taxCards.get(card).pay;
             if(this.bankBalance>=payMoney){
                 this.bankBalance -= payMoney;
@@ -58,8 +58,12 @@ class player {
 
             Bank.cards.remove(card);
             this.has.add(card);
+            System.out.println("Card Bought Successfully!!");
             this.bankBalance-=cost;
 	        this.addCard(card);
+        }
+        else{
+            System.out.println("\n Sorry cant Buy Card Right Now!! Not Enough Balance");
         }
         this.balance();
     }
